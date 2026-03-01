@@ -1,0 +1,6 @@
+wp-includes/plugin-scanner
+tools/plugin-scanner/plugin-scanner
+*.log
+*.swp
+.DS_Store
+wp-config.php

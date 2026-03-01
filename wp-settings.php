@@ -106,6 +106,8 @@ wp_set_lang_dir();
 // Load early procedural files. Classes are autoloaded.
 require ABSPATH . WPINC . '/utf8.php';
 require ABSPATH . WPINC . '/formatting.php';
+require ABSPATH . WPINC . '/class-wp-input.php';
+WP_Input::init();
 require ABSPATH . WPINC . '/meta.php';
 require ABSPATH . WPINC . '/functions.php';
 require ABSPATH . WPINC . '/pomo/mo.php';

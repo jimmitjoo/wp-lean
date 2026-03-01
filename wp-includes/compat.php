@@ -296,11 +296,6 @@ if ( ! function_exists( 'utf8_decode' ) ) :
 	endif;
 endif;
 
-// sodium_crypto_box() was introduced with Sodium in PHP 7.2, but the extension may not be enabled.
-if ( ! function_exists( 'sodium_crypto_box' ) ) {
-	require ABSPATH . WPINC . '/sodium_compat/autoload.php';
-}
-
 if ( ! function_exists( 'array_is_list' ) ) {
 	/**
 	 * Polyfill for `array_is_list()` function added in PHP 8.1.

@@ -43,6 +43,9 @@ wp_check_php_mysql_versions();
 require ABSPATH . WPINC . '/class-wp-autoloader.php';
 WP_Autoloader::register();
 
+require ABSPATH . WPINC . '/class-wp-vendor.php';
+WP_Vendor::init();
+
 require ABSPATH . WPINC . '/error-protection.php';
 require ABSPATH . WPINC . '/default-constants.php';
 require_once ABSPATH . WPINC . '/plugin.php';

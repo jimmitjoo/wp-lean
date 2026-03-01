@@ -1,0 +1,82 @@
+{
+  "packages": {
+    "getid3/getid3": {
+      "version": "1.9.24",
+      "path": "ID3",
+      "files": 16,
+      "lines": 25489,
+      "used_by": "wp-admin/includes/media.php (media metadata extraction)",
+      "security": {
+        "critical": 4,
+        "patterns": ["shell_exec for ffmpeg/vorbiscomment"],
+        "note": "Shells out to external tools for media analysis"
+      },
+      "replacement": "ext-ffmpeg or pure PHP implementation without shell_exec"
+    },
+    "phpmailer/phpmailer": {
+      "version": "7.0.2",
+      "path": "PHPMailer",
+      "files": 7,
+      "lines": 8080,
+      "used_by": "pluggable.php wp_mail(), class-wp-phpmailer.php",
+      "security": {
+        "critical": 2,
+        "patterns": ["popen for sendmail transport"],
+        "note": "Uses popen to pipe to sendmail binary"
+      },
+      "replacement": "Keep — but lock to SMTP transport only, disable sendmail popen"
+    },
+    "rmccue/requests": {
+      "version": "2.0.17",
+      "path": "Requests",
+      "files": 65,
+      "lines": 8065,
+      "used_by": "class-wp-http.php, HTTP API throughout core",
+      "security": {
+        "critical": 0,
+        "patterns": [],
+        "note": "Clean"
+      },
+      "replacement": "Keep — core HTTP dependency"
+    },
+    "simplepie/simplepie": {
+      "version": "1.9.0",
+      "path": "SimplePie",
+      "files": 82,
+      "lines": 21000,
+      "used_by": "feed.php, class-feed.php (RSS widget, feed imports)",
+      "security": {
+        "critical": 0,
+        "patterns": [],
+        "note": "assert() calls are PHPStan type assertions, not eval"
+      },
+      "replacement": "Optional — only needed if site uses RSS feeds"
+    },
+    "horde/text-diff": {
+      "version": "bundled",
+      "path": "Text",
+      "files": 7,
+      "lines": 1697,
+      "used_by": "wp-diff.php, pluggable.php wp_text_diff()",
+      "security": {
+        "critical": 0,
+        "patterns": [],
+        "note": "Shell engine removed, native PHP engine only"
+      },
+      "replacement": "Keep — native engine is clean"
+    },
+    "pomo": {
+      "version": "bundled",
+      "path": "pomo",
+      "files": 6,
+      "lines": 2253,
+      "used_by": "l10n.php, translation loading",
+      "security": {
+        "critical": 0,
+        "patterns": [],
+        "note": "Clean"
+      },
+      "replacement": "Keep — core i18n dependency"
+    }
+  }
+}

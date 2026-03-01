@@ -68,6 +68,11 @@ class WP_Plugin_Sandbox {
       do_action('plugin_security_warning', $plugin, $scan_result);
     }
 
+    $vendor_check = WP_Vendor::validate_plugin_vendors($plugin);
+    if (is_wp_error($vendor_check)) {
+      return $vendor_check;
+    }
+
     return $result;
   }
 

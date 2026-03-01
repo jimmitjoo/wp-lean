@@ -166,36 +166,24 @@ require_once ABSPATH . WPINC . '/class-wp-locale-switcher.php';
 // Run the installer if WordPress is not installed.
 wp_not_installed();
 
-// Load procedural APIs. All classes are autoloaded on first use.
+// Core APIs — loaded every request.
 require ABSPATH . WPINC . '/capabilities.php';
 require ABSPATH . WPINC . '/query.php';
-require ABSPATH . WPINC . '/theme.php';
-require ABSPATH . WPINC . '/global-styles-and-settings.php';
-require ABSPATH . WPINC . '/block-template-utils.php';
-require ABSPATH . WPINC . '/block-template.php';
-require ABSPATH . WPINC . '/theme-templates.php';
-require ABSPATH . WPINC . '/theme-previews.php';
-require ABSPATH . WPINC . '/template.php';
-require ABSPATH . WPINC . '/https-detection.php';
-require ABSPATH . WPINC . '/https-migration.php';
 require ABSPATH . WPINC . '/user.php';
-require ABSPATH . WPINC . '/general-template.php';
-require ABSPATH . WPINC . '/link-template.php';
-require ABSPATH . WPINC . '/author-template.php';
-require ABSPATH . WPINC . '/robots-template.php';
 require ABSPATH . WPINC . '/post.php';
 require ABSPATH . WPINC . '/post-template.php';
-require ABSPATH . WPINC . '/revision.php';
-require ABSPATH . WPINC . '/post-formats.php';
-require ABSPATH . WPINC . '/post-thumbnail-template.php';
 require ABSPATH . WPINC . '/category.php';
-require ABSPATH . WPINC . '/category-template.php';
+require ABSPATH . WPINC . '/taxonomy.php';
 require ABSPATH . WPINC . '/comment.php';
-require ABSPATH . WPINC . '/comment-template.php';
 require ABSPATH . WPINC . '/rewrite.php';
-require ABSPATH . WPINC . '/feed.php';
 require ABSPATH . WPINC . '/kses.php';
 require ABSPATH . WPINC . '/cron.php';
+require ABSPATH . WPINC . '/http.php';
+require ABSPATH . WPINC . '/theme.php';
+require ABSPATH . WPINC . '/template.php';
+require ABSPATH . WPINC . '/general-template.php';
+require ABSPATH . WPINC . '/link-template.php';
+require ABSPATH . WPINC . '/media.php';
 require ABSPATH . WPINC . '/script-loader.php';
 if ( file_exists( ABSPATH . WPINC . '/build/routes.php' ) ) {
 	require ABSPATH . WPINC . '/build/routes.php';
@@ -203,66 +191,86 @@ if ( file_exists( ABSPATH . WPINC . '/build/routes.php' ) ) {
 if ( file_exists( ABSPATH . WPINC . '/build/pages.php' ) ) {
 	require ABSPATH . WPINC . '/build/pages.php';
 }
-require ABSPATH . WPINC . '/taxonomy.php';
-require ABSPATH . WPINC . '/update.php';
-require ABSPATH . WPINC . '/canonical.php';
-require ABSPATH . WPINC . '/shortcodes.php';
-require ABSPATH . WPINC . '/embed.php';
-require ABSPATH . WPINC . '/media.php';
-require ABSPATH . WPINC . '/http.php';
-require ABSPATH . WPINC . '/html-api/html5-named-character-references.php';
-require ABSPATH . WPINC . '/php-ai-client/autoload.php';
-require ABSPATH . WPINC . '/ai-client.php';
-require ABSPATH . WPINC . '/connectors.php';
-require ABSPATH . WPINC . '/widgets.php';
-require ABSPATH . WPINC . '/nav-menu-template.php';
-require ABSPATH . WPINC . '/nav-menu.php';
-require ABSPATH . WPINC . '/admin-bar.php';
-require ABSPATH . WPINC . '/abilities-api.php';
-require ABSPATH . WPINC . '/abilities.php';
-require ABSPATH . WPINC . '/collaboration.php';
-require ABSPATH . WPINC . '/rest-api.php';
-require ABSPATH . WPINC . '/sitemaps.php';
-require ABSPATH . WPINC . '/block-bindings.php';
-require ABSPATH . WPINC . '/block-bindings/pattern-overrides.php';
-require ABSPATH . WPINC . '/block-bindings/post-data.php';
-require ABSPATH . WPINC . '/block-bindings/post-meta.php';
-require ABSPATH . WPINC . '/block-bindings/term-data.php';
-require ABSPATH . WPINC . '/blocks.php';
-require ABSPATH . WPINC . '/blocks/index.php';
-require ABSPATH . WPINC . '/block-editor.php';
-require ABSPATH . WPINC . '/block-patterns.php';
-require ABSPATH . WPINC . '/block-supports/utils.php';
-require ABSPATH . WPINC . '/block-supports/align.php';
-require ABSPATH . WPINC . '/block-supports/auto-register.php';
-require ABSPATH . WPINC . '/block-supports/custom-classname.php';
-require ABSPATH . WPINC . '/block-supports/generated-classname.php';
-require ABSPATH . WPINC . '/block-supports/settings.php';
-require ABSPATH . WPINC . '/block-supports/elements.php';
-require ABSPATH . WPINC . '/block-supports/colors.php';
-require ABSPATH . WPINC . '/block-supports/typography.php';
-require ABSPATH . WPINC . '/block-supports/border.php';
-require ABSPATH . WPINC . '/block-supports/layout.php';
-require ABSPATH . WPINC . '/block-supports/position.php';
-require ABSPATH . WPINC . '/block-supports/spacing.php';
-require ABSPATH . WPINC . '/block-supports/dimensions.php';
-require ABSPATH . WPINC . '/block-supports/duotone.php';
-require ABSPATH . WPINC . '/block-supports/shadow.php';
-require ABSPATH . WPINC . '/block-supports/background.php';
-require ABSPATH . WPINC . '/block-supports/block-style-variations.php';
-require ABSPATH . WPINC . '/block-supports/aria-label.php';
-require ABSPATH . WPINC . '/block-supports/anchor.php';
-require ABSPATH . WPINC . '/block-supports/block-visibility.php';
-require ABSPATH . WPINC . '/block-supports/custom-css.php';
-require ABSPATH . WPINC . '/style-engine.php';
-require ABSPATH . WPINC . '/fonts.php';
-require ABSPATH . WPINC . '/script-modules.php';
-require ABSPATH . WPINC . '/interactivity-api/interactivity-api.php';
-require ABSPATH . WPINC . '/speculative-loading.php';
-require ABSPATH . WPINC . '/view-transitions.php';
 
-add_action( 'after_setup_theme', array( wp_script_modules(), 'add_hooks' ) );
-add_action( 'after_setup_theme', array( wp_interactivity(), 'add_hooks' ) );
+// Lazy loader for deferred files.
+require ABSPATH . WPINC . '/class-wp-lazy-loader.php';
+
+// Rendering — deferred to template_redirect (skipped on REST/AJAX/cron).
+$render_files = array(
+	'global-styles-and-settings.php', 'block-template-utils.php',
+	'block-template.php', 'theme-templates.php',
+	'shortcodes.php', 'embed.php',
+	'comment-template.php', 'category-template.php',
+	'author-template.php', 'post-thumbnail-template.php',
+	'block-bindings.php', 'block-bindings/pattern-overrides.php',
+	'block-bindings/post-data.php', 'block-bindings/post-meta.php',
+	'block-bindings/term-data.php',
+	'blocks.php', 'blocks/index.php', 'block-editor.php', 'block-patterns.php',
+	'block-supports/utils.php', 'block-supports/align.php',
+	'block-supports/auto-register.php', 'block-supports/custom-classname.php',
+	'block-supports/generated-classname.php', 'block-supports/settings.php',
+	'block-supports/elements.php', 'block-supports/colors.php',
+	'block-supports/typography.php', 'block-supports/border.php',
+	'block-supports/layout.php', 'block-supports/position.php',
+	'block-supports/spacing.php', 'block-supports/dimensions.php',
+	'block-supports/duotone.php', 'block-supports/shadow.php',
+	'block-supports/background.php', 'block-supports/block-style-variations.php',
+	'block-supports/aria-label.php', 'block-supports/anchor.php',
+	'block-supports/block-visibility.php', 'block-supports/custom-css.php',
+	'style-engine.php', 'fonts.php',
+);
+foreach ( $render_files as $f ) {
+	WP_Lazy_Loader::register( $f, 'wp_loaded' );
+}
+
+// Admin-only — deferred to admin_init.
+$admin_files = array(
+	'update.php', 'admin-bar.php',
+	'widgets.php', 'nav-menu.php', 'nav-menu-template.php',
+);
+foreach ( $admin_files as $f ) {
+	WP_Lazy_Loader::register( $f, 'admin_init' );
+}
+
+// Rarely used — deferred to wp_loaded.
+$lazy_files = array(
+	'feed.php', 'revision.php', 'post-formats.php',
+	'canonical.php', 'robots-template.php',
+	'https-detection.php', 'https-migration.php',
+	'theme-previews.php', 'sitemaps.php',
+	'script-modules.php', 'interactivity-api/interactivity-api.php',
+	'speculative-loading.php', 'view-transitions.php',
+	'abilities-api.php', 'abilities.php', 'collaboration.php',
+	'ai-client.php', 'connectors.php',
+	'html-api/html5-named-character-references.php',
+	'php-ai-client/autoload.php',
+);
+foreach ( $lazy_files as $f ) {
+	WP_Lazy_Loader::register( $f, 'wp_loaded' );
+}
+
+// REST API — only when handling REST requests.
+WP_Lazy_Loader::register( 'rest-api.php', 'parse_request' );
+
+add_action( 'after_setup_theme', function() {
+	if ( WP_Lazy_Loader::is_loaded( 'script-modules.php' ) ) {
+		wp_script_modules()->add_hooks();
+	}
+	if ( WP_Lazy_Loader::is_loaded( 'interactivity-api/interactivity-api.php' ) ) {
+		wp_interactivity()->add_hooks();
+	}
+}, 0 );
+
+add_action( 'wp_loaded', function() {
+	if ( ! WP_Lazy_Loader::is_loaded( 'script-modules.php' ) ) {
+		WP_Lazy_Loader::load( 'script-modules.php' );
+		wp_script_modules()->add_hooks();
+	}
+	if ( ! WP_Lazy_Loader::is_loaded( 'interactivity-api/interactivity-api.php' ) ) {
+		WP_Lazy_Loader::load( 'interactivity-api/interactivity-api.php' );
+		wp_interactivity()->add_hooks();
+	}
+}, 1 );
 
 /**
  * @since 3.3.0

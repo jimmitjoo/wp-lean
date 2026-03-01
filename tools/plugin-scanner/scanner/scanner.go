@@ -4,6 +4,7 @@ import (
   "bufio"
   "os"
   "path/filepath"
+  "regexp"
   "strings"
 )
 
@@ -153,6 +154,33 @@ func CheckCapabilities(result *Result, declared []Capability) []Violation {
   return violations
 }
 
+var stringLiteralFuncs = regexp.MustCompile(
+  `['"]` +
+    `[^'"]*` +
+    `\b(eval|exec|system|passthru|shell_exec|popen|proc_open|assert|create_function)\b` +
+    `[^'"]*` +
+    `['"]`,
+)
+
+func isInStringLiteral(patternName string, line string) bool {
+  funcNames := map[string]bool{
+    "eval()": true, "exec()": true, "system()": true,
+    "passthru()": true, "shell_exec()": true, "popen()": true,
+    "proc_open()": true, "create_function()": true,
+    "assert() with string eval": true, "assert() with user input": true,
+  }
+  if !funcNames[patternName] {
+    return false
+  }
+  clean := stringLiteralFuncs.ReplaceAllString(line, "\"\"")
+  for _, p := range Patterns {
+    if p.Name == patternName {
+      return !p.Regex.MatchString(clean)
+    }
+  }
+  return false
+}
+
 func isSanitized(patternName string, line string) bool {
   isSuperglobal := false
   for _, sp := range superglobalPatterns {
@@ -167,6 +195,9 @@ func isSanitized(patternName string, line string) bool {
     }
     if patternName == "exec()" {
       return strings.Contains(line, "->exec(")
+    }
+    if isInStringLiteral(patternName, line) {
+      return true
     }
     return false
   }
